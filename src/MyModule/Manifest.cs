@@ -6,5 +6,6 @@ using OrchardCore.Modules.Manifest;
     Website = "https://orchardcore.net",
     Version = "0.0.1",
     Description = "MyModule",
-    Category = "MyModule"
+    Category = "MyModule",
+    Dependencies = ["MyClassLib"]
 )]

@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MyClassLib\MyClassLib.csproj" />
     <ProjectReference Include="..\MyModule\MyModule.csproj" />
   </ItemGroup>
 
