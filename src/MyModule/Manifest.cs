@@ -7,5 +7,5 @@ using OrchardCore.Modules.Manifest;
     Version = "0.0.1",
     Description = "MyModule",
     Category = "MyModule",
-    Dependencies = ["MyClassLib"]
+    Dependencies = ["OrchardCore.Mvc"]
 )]

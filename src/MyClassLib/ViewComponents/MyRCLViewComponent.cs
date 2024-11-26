@@ -15,7 +15,7 @@ namespace MyClassLib.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            return View();
+            return View("~/Views/Shared/Components/MyRCL/default.cshtml");
         }
     }
 }

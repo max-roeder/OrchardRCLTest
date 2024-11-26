@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,13 +13,27 @@ public sealed class Startup : StartupBase
 {
     public override void ConfigureServices(IServiceCollection services)
     {
-        services.Configure<MvcRazorRuntimeCompilationOptions>(options =>
-        {
-            var libraryPath = Path.GetFullPath(
-                Path.Combine(Directory.GetCurrentDirectory(), "..", "MyClassLib"));
 
-            options.FileProviders.Add(new PhysicalFileProvider(libraryPath));
-        });
+        var assembly = typeof(MyClassLib.ViewComponents.MyRCLViewComponent).Assembly;
+
+        var resourceNames = assembly.GetManifestResourceNames();
+
+        services.AddMvc()
+            .ConfigureApplicationPartManager(apm =>
+            {
+                apm.ApplicationParts.Add(new AssemblyPart(assembly));
+            })
+            .AddRazorRuntimeCompilation(options =>
+            {
+                options.FileProviders.Add(new EmbeddedFileProvider(assembly));
+            });
+
+
+        //services.Configure<RazorViewEngineOptions>(options =>
+        //{
+        //    options.ViewLocationExpanders.Add(new EmbeddedViewLocationExpander());
+        //});
+
     }
 
     public override void Configure(IApplicationBuilder builder, IEndpointRouteBuilder routes, IServiceProvider serviceProvider)

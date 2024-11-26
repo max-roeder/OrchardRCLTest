@@ -14,8 +14,6 @@
 
 	<ItemGroup>
 		<EmbeddedResource Include="Views\**\*.cshtml" />
-		<EmbeddedResource Include="wwwroot\**\*" />
-		<EmbeddedResource Include="ViewComponents\*.cs" />
 	</ItemGroup>
 
 </Project>
